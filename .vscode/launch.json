@@ -9,7 +9,7 @@
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}/src",
-            "module": "tests.run_tes${defaultBuildTask}"
+            "module": "tests.run_tests"
         }
     ]
 }
