@@ -25,6 +25,7 @@ handler = SMTPHandler(sender, recipients, smtp_server, smtp_port, use_tls=use_tl
 
 
 # Send simple mail
+print("Send simple mail...")
 handler.send_mail("Test message", "Simple test subject")
 
 # Send simple mail with html format
@@ -36,10 +37,12 @@ html_body = """
     </body>
 </html>
 """
+print("Send simple HTML mail...")
 handler.send_mail(html_body, "Simple html test subject", is_html=True)
 
 # Send exception mail
 try:
     a = 1 / 0
 except Exception as e:
+    print("Send exception mail...")
     handler.send_exception_email(e, "Exception test subject")

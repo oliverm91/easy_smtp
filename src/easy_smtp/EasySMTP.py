@@ -25,7 +25,7 @@ class SMTPHandler:
         self._check_attributes()
         
     def _check_attributes(self):
-        if not isinstance(self.recipients, list) or not isinstance(self.recipients, str):
+        if not isinstance(self.recipients, list) and not isinstance(self.recipients, str):
             raise TypeError(f"recipients must be of type list of strings or string. Got {type(self.recipients)}")
         if isinstance(self.recipients, list):
             for recipient in self.recipients:
@@ -50,7 +50,7 @@ class SMTPHandler:
     def send_exception_email(self, exception: Exception, subject: str):
         tb_str = traceback.format_exc()
         
-        message = f"""
+        body = f"""
         <html>
         <head>
             <style>
@@ -86,7 +86,6 @@ class SMTPHandler:
         </html>
         """
         
-        body = MIMEText(message, 'html')
         self.send_mail(body, subject, is_html=True)
 
     def send_mail(self, body: str, subject: str, is_html: bool = False):
