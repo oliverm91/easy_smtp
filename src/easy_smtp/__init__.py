@@ -1,0 +1,1 @@
+from .EasySMTP import SMTPHandler, SMTPCredentials
