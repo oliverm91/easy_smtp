@@ -47,9 +47,12 @@ class SMTPHandler:
         if self.credentials is not None and not isinstance(self.credentials, SMTPCredentials):
             raise TypeError(f"credentials must be of type SMTPCredentials. Got {type(self.credentials)}")
 
-    def send_exception_email(self, exception: Exception, subject: str):
+    def send_exception_email(self, exception: Exception, subject: str, post_traceback_html_body: Optional[str]=None):
         tb_str = traceback.format_exc()
         
+        if post_traceback_html_body is None:
+            post_traceback_html_body = ""
+
         body = f"""
         <html>
         <head>
@@ -82,6 +85,7 @@ class SMTPHandler:
             <p class="exception">Exception: {exception}</p>
             <p><strong>Traceback:</strong></p>
             <div class="traceback">{tb_str}</div>
+            <p>{post_traceback_html_body}</p>
         </body>
         </html>
         """
