@@ -85,7 +85,8 @@ class SMTPHandler:
             <p class="exception">Exception: {exception}</p>
             <p><strong>Traceback:</strong></p>
             <div class="traceback">{tb_str}</div>
-            <p>{post_traceback_html_body}</p>
+            <br>
+            {post_traceback_html_body}
         </body>
         </html>
         """
